@@ -1,18 +1,19 @@
 ## DeployMC - rapidly and painlessly deploy Minecraft servers from Discord
 DeployMC lets you deploy Minecraft server instances via Docker with control through a Discord bot. It has the functionality implemented to let users pay only for what they use by uploading/downloading servers to and from a private Backblaze B2 bucket when stopped and started, taking the storage load off the server. User data required for billing and instance status information is stored in a MySQL database, which the server-side code has built-in interactivity with to push and pull necessary data.
 
+<img width="960" alt="deploymc_img" src="https://github.com/user-attachments/assets/a55213bc-d1b0-4528-91bf-0c23a756528f" />
+
 ## Licensing
 DeployMC uses the GPL 3.0 license. This means that any components that use DeployMC source code must use the same open-source GPL 3.0 license themselves.
 
 ## Contributors
 DeployMC was developed by [Aspen Cuozzo](https://github.com/aspencuozzo) and [Alfredooe](https://github.com/Alfredooe) with contributions from [DashLt](https://github.com/DashLt) and [Nicholas Rosati](https://github.com/hydranoid620).
 
----
-
-## Structure
+## Advanced
+### Structure
 The front-end of DeployMC, where the user and the Discord bot communicate is located in **script.py**. The backend, which pulls data from the database and server to return it to the front-end, is located in **server.py**.
         
-## Extending the backend
+### Extending the backend
 - Define a new function in the class `DockerCommandServer`. (tip: if this deals with referencing (not creating) a container by name, put @gets_container on the line before; now, the variable container will always lead to a Container object)
 - Specify any necessary arguments (and make sure when implementing the frontend to pass these!)
 - Do whatever you need to do, and return a tuple (this, thing). The first value is either "success" or "failure", and the last value is any return info you want to pass to the frontend that can be stuffed in a JSON object. If you're not returning anything, write None.
